@@ -7,7 +7,7 @@ public class Cat {
     private int hunger;
     private int thirst;
     private int boredom;
-
+    private boolean dead;
 
     public Cat(String name, String furColor, int hunger, int thirst, int boredom) {
         this.name = name;
@@ -15,15 +15,15 @@ public class Cat {
         this.hunger = hunger;
         this.thirst = thirst;
         this.boredom = boredom;
+        this.dead = false;
     }
 
     public String healhtStatus() {
-        return  "********"
-                + "\n"+ name +  "'s Health status"
-                + "\n1 Hunger: " + hunger
-                + "\n2 Thirst: " + thirst
-                + "\n3 Boredom: " + boredom
-                + "\n********";
+        return   name +  "'s Health status"
+                + " Hunger: " + hunger
+                + " Thirst: " + thirst
+                + " Boredom: " + boredom;
+
     }
 
 
@@ -46,16 +46,26 @@ public class Cat {
     public int getBoredom() {
         return boredom;
     }
-   public void tick(){
+
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void tick(){
         hunger =  Math.max(0, hunger - 2);
         thirst = Math.max(0, thirst - 2);
         boredom = Math.max(0, boredom - 2);
 
+        if(hunger <=0 || thirst <= 0 || boredom <0){
+            dead =true;
+        }
+
     }
         public static String greeting(){
         String greetingMessage = "";
-        System.out.println("Give Simba food and water or play with him to keep him happy." +
-                "\nIf you don't he will run away and Scar will rule the land");
+        System.out.println("Welcome to the Pet shelter. You can admit a pet or adopt a pet." +
+                "\nOr if you would like to volunteer you can help out." +
+                "\nYou can choose to feed, water or play with all or just one of them.");
         return greetingMessage;
 
     }
@@ -71,16 +81,16 @@ public class Cat {
         boredom = Math.min(20,hunger + 5);
     }
 
-    public void gameOver (){
-        if (hunger == 0);
-        if (thirst == 0);
-        if (boredom == 0);
-            System.out.println("Game over, you didn't feed Simba enough. He ran away");
-
-
-
-
-    }
+//    public void gameOver (){
+//        if (hunger == 0);
+//        if (thirst == 0);
+//        if (boredom == 0);
+//            System.out.println("Game over, you didn't feed Simba enough. He ran away");
+//
+//
+//
+//
+//    }
     public void youWon (){
         if (hunger == 20);
         if (thirst == 20);
