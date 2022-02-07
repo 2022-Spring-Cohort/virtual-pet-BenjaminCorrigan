@@ -1,20 +1,58 @@
 package virtual_pet;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+//import static org.graalvm.compiler.nodeinfo.Verbosity.Name;
 
 public class VirtualPetShelter {
 
-    private ArrayList<Cat> petShelter;
+    protected ArrayList<Cat> petShelter;
 
 
     public VirtualPetShelter() {
-        this.petShelter = new ArrayList<>();
+
+        System.out.println("VIRTUAL PET SHELTER CONSTRUCTOR");
+        petShelter = new ArrayList<>();
+    }
+    public void listPets(){
+        int i = 1;
+        for (Cat currentCat : petShelter) {
+            System.out.println(i + " - " + currentCat.getName() + " " + currentCat.getFurColor());
+            i++;
+        }
     }
 
-    public void addPet(Cat myCat){
-        petShelter.add(myCat);
-
+    public void waterPet(){
+        this.listPets();
+        System.out.println("You have chosen to water a pet.  Which one?");
+        Scanner scan = new Scanner(System.in);
+        int catNumber = scan.nextInt();
+        // subtract 1 from catIndex.  find that cat.  water that cat
+        Cat luckyCat = petShelter.get(catNumber - 1);
+        luckyCat.water();
+        luckyCat.healthStatus();
     }
+
+    public void feedPet(Scanner scan){
+        listPets();
+        System.out.println("You have chosen to feed a pet.  Which one?");
+//        Scanner scan = new Scanner(System.in);
+        int catNumber = scan.nextInt();
+        // subtract 1 from catIndex.  find that cat.  feed that cat
+        Cat luckyCat = petShelter.get(catNumber - 1);
+        luckyCat.feed();
+        luckyCat.healthStatus();
+    }
+
+    public void playPet(int catIndex){
+        // subtract 1 from catIndex.  find that cat.  water that cat
+        Cat luckyCat = petShelter.get(catIndex - 1);
+        luckyCat.play();
+        luckyCat.healthStatus();
+    }
+
+
     //loop through all pets
     //call each pets feed,water, and play method
     public void waterAllPets() {
@@ -22,33 +60,58 @@ public class VirtualPetShelter {
             currentCat.water();
         }
     }
+
     public void feedAllPets() {
         for (Cat currentCat : petShelter) {
             currentCat.feed();
         }
     }
+
     public void playAllPets() {
         for (Cat currentCat : petShelter) {
             currentCat.play();
         }
     }
+
     public ArrayList<Cat> getPetShelter() {
         return petShelter;
     }
-    public boolean petsNotDead(){
-        for (Cat currentCat:petShelter) {
-            if(currentCat.isDead()){
+
+    public boolean allPetsAlive() {
+        for (Cat currentCat : petShelter) {
+            if (currentCat.isDead()) {
                 return false;
             }
         }
         return true;
     }
-    public void tickPets(){
-        for (Cat currentCat:petShelter) {
+    public void listNames(){
+        for (Cat myShelter : petShelter)
+            System.out.println(myShelter.getName());
+    }
+
+    public void tickPets() {
+        for (Cat currentCat : petShelter) {
+            //System.out.println("ticking " + currentCat.getName());
+            currentCat.healthStatus();
             currentCat.tick();
         }
     }
+    public static String greeting(){
+        System.out.println(" IN GREETING");
+        String greetingMessage = "";
+        System.out.println("==================================================================");
+        System.out.println("= WELCOME ========================================================");
+        System.out.println("==================================================================");
+        System.out.println("Welcome to the Pet shelter. You can admit a pet or adopt a pet." +
+                "\nOr if you would like to volunteer you can help out." +
+                "\nYou can choose to feed, water or play with all or just one of them.\n\n");
+        return greetingMessage;
+
+    }
+
     public void mainMenu() {
+        System.out.println("-----------------------------MENU---------------------------------");
         System.out.println("Using the numbers choose what you would like to do." +
                 "\n1- Adopt a pet " +
                 "\n2- Admit a pet" +
@@ -59,13 +122,68 @@ public class VirtualPetShelter {
                 "\n7- Give water to all pets" +
                 "\n8- Play with all the pets" +
                 "\n9- Select to see a list of all the pets currently here");
-    }
-    public void adoptCat() {
-        System.out.println("Which cat would you like to adopt?");
-        for (Cat myshelter : petShelter)
-            System.out.println(myshelter.getName());
+        System.out.println("------------------------------------------------------------------");
     }
 
+    public void adoptPet(Scanner scan) {
+        // TO DO - figure out how to select a specific pet and then, once selected, REMOVE it from the list
+        System.out.println("Which cat would you like to adopt?");
+        for (Cat myShelter : petShelter) {
+            System.out.println(myShelter.getName());
+        }
+            String petName = scan.nextLine();
+            Cat foundCat= null;
+        for (Cat myCat : petShelter){
+            if (myCat.getName().equals(petName)){
+               foundCat = myCat;
+            }
+        }
+        petShelter.remove(foundCat);
+    }
+    public void addPetToShelter(Cat myCat) {
+//        System.out.println("Tell us about your cat you would like to admit.");
+//        for (Cat myShelter : petShelter)
+//            System.out.println(myShelter.getName());
+            petShelter.add(myCat);
+//        Scanner scan = new Scanner(System.in);
+//        System.out.println("What is your pets color?");
+//        String newColor = scan.nextLine();
+//        System.out.println("What is your pets name?");
+//        String newName = scan.nextLine();
+
+    }
+
+    public void admitPet(Scanner scan) {
+
+        System.out.println("What is your pets color?");
+        String newColor = scan.nextLine();
+        System.out.println("What is your pets name?");
+        String newName = scan.nextLine();
+        Cat myCat = new Cat(newName, newColor);
+        petShelter.add(myCat);
+        System.out.println("Your lovely pet has been added to the shelter."+
+                "\n You can see your pet in the Pet Stats list.");
+    }
+
+    public void petShelter(Cat myCat){
+
+    }
+
+//    public Pet addNewPet(Scanner scan) {
+//        System.out.println("What is your pets name?");
+//        String newName = scan.nextLine();
+//
+//
+//
+//
+//        Pet newPet = new Pet(newName,newColor);
+//        VirtualPetShelter.add(newPet);
+//
+//        return newPet;
+//    }
+//
+//    private static <Pet> void add(Pet newPet) {
+    //}
 
 
 }
