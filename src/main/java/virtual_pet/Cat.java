@@ -70,6 +70,7 @@ public class Cat {
         hunger =  Math.max(0, hunger - 2);
         thirst = Math.max(0, thirst - 2);
         boredom = Math.max(0, boredom - 2);
+        //cleanliness = Math.max(0, cleanliness -2);
 
 
 
@@ -91,12 +92,13 @@ public class Cat {
     public void play() {
         boredom = Math.min(20,boredom + 5);
     }
+    //public void clean() { }
 
     public void gameOver (){
         if (hunger == 0);
         if (thirst == 0);
         if (boredom == 0);
-            System.out.println("Game over, you didn't feed Simba enough. He ran away");
+            System.out.println("Your musk of panther and gasoline has burned your nostrils and none likes you. Game over.");
 
 
 
@@ -106,7 +108,7 @@ public class Cat {
         if (hunger == 20);
         if (thirst == 20);
         if (boredom == 20);
-            System.out.println("Game over, you won Simba will stay to rule over the land.");
+            System.out.println("It's pretty much my favorite animal. It's like a lion and a tiger mixed... bred for its skills in magic. You won.");
     }
 
 

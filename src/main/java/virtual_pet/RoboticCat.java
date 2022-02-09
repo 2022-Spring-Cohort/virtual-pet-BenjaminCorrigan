@@ -11,4 +11,14 @@ public class RoboticCat extends Cat {
 
     }
     // method for maintenance
+    public void oilCat(){
+        maintenance += 20;
+    }
+    public void chargeCatBattery(){
+        maintenance += 20;
+    }
+
+    public void walk() {
+
+    }
 }

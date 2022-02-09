@@ -72,6 +72,37 @@ public class VirtualPetShelter {
             currentCat.play();
         }
     }
+    public void cleanAllPets() {
+        for (Cat currentCat : petShelter) {
+            if (currentCat instanceof OrganicCat){
+                ((OrganicCat)currentCat).clean();
+            }
+        }
+    }
+    //oil all
+    public void oilAllPets(){
+        for (Cat currentCat : petShelter) {
+            if (currentCat instanceof RoboticCat){
+                ((RoboticCat)currentCat).oilCat();
+            }
+        }
+    }
+    public void chargeAllPets(){
+        for (Cat currentCat : petShelter) {
+            if (currentCat instanceof RoboticCat){
+                ((RoboticCat)currentCat).chargeCatBattery();
+            }
+        }
+    }
+
+    //walk all
+    public void walkAllPets(){
+        for (Cat currentCat : petShelter) {
+            if (currentCat instanceof RoboticCat){
+                ((RoboticCat)currentCat).walk();
+            }
+        }
+    }
 
     public ArrayList<Cat> getPetShelter() {
         return petShelter;
@@ -121,7 +152,12 @@ public class VirtualPetShelter {
                 "\n6- Feed all pets" +
                 "\n7- Give water to all pets" +
                 "\n8- Play with all the pets" +
-                "\n9- Select to see a list of all the pets currently here");
+                "\n9- Select to see a list of all the pets currently here"+
+                "\n10- Walk both organic and robotic Panthers"+
+                "\n11- Clean the organic panther and liger cages"+
+                "\n12- Oil robotic panther and robotic ligers"+
+                "\n13- Charge robotic panther and ligers batteries"+
+                "\n0- To see the menu at any time");
         System.out.println("------------------------------------------------------------------");
     }
 

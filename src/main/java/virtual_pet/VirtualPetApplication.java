@@ -20,10 +20,16 @@ public class VirtualPetApplication {
         //System.out.println("in game");
         myShelter = new VirtualPetShelter();
         //method to add pet from shelter
-        myShelter.addPetToShelter(new Cat("Simba", "Yellow", 10, 10, 10));
-        myShelter.addPetToShelter(new Cat("Fluffy", "gray",10,10,10));
-        myShelter.addPetToShelter(new Cat("Toomey", "orange", 10, 10, 10));
-        myShelter.addPetToShelter(new Cat("Rogue", "Gray, orange, white", 10, 10, 10));
+        myShelter.addPetToShelter(new OrganicLiger("Liger Napoleon Dynamite", "Tan with stripes", 10));
+        myShelter.addPetToShelter(new OrganicPanther("Panther Brian Fontana", "Black",            10));
+        myShelter.addPetToShelter(new RoboticLiger("Cyborg Jon Heder","Brown",                 10));
+        myShelter.addPetToShelter(new RoboticPanther("Cyborg Paul Rudd","Midnight black",     10));
+        myShelter.addPetToShelter(new Cat("Cat Toomey", "orange",           10,  10, 10));
+        myShelter.addPetToShelter(new Cat("Cat Rogue", "Gray, orange, white", 10, 10, 10));
+
+
+
+
         myShelter.greeting();
        // myShelter.listPets();
 
@@ -42,6 +48,7 @@ public class VirtualPetApplication {
             System.out.println("What would you like to do next?");
             Scanner scan = new Scanner(System.in);
             int userSelection;
+
 
             userSelection = scan.nextInt();
             scan.nextLine();
@@ -105,6 +112,31 @@ public class VirtualPetApplication {
                 System.out.println("LIST OF PETS");
                 myShelter.listNames();
 
+            }
+            // walk all panthers A
+
+            if (userSelection == 10) {
+                System.out.println("You picked option A to walk the Panthers");
+                myShelter.walkAllPets();
+                    //userSelection = scan.nextLine().toUpperCase().charAt(0);
+            }
+            // clean cage
+
+            if (userSelection == 11){
+                System.out.println("You picked option B to clean the cage");
+                myShelter.cleanAllPets();
+            }
+            // oil RoboticCat
+
+            if (userSelection == 12){
+                System.out.println("You picked option C to oil the robotic Pets");
+                myShelter.oilAllPets();
+            }
+            // charge battery
+
+            if (userSelection == 13){
+                System.out.println("You picked option C to oil the robotic Pets");
+                myShelter.chargeAllPets();
             }
 
             if (userSelection != 9 && userSelection != 0){
