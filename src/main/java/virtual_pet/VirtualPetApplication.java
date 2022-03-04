@@ -24,8 +24,8 @@ public class VirtualPetApplication {
         myShelter.addPetToShelter(new OrganicPanther("Panther Brian Fontana", "Black",            10));
         myShelter.addPetToShelter(new RoboticLiger("Cyborg Jon Heder","Brown",                 10));
         myShelter.addPetToShelter(new RoboticPanther("Cyborg Paul Rudd","Midnight black",     10));
-        myShelter.addPetToShelter(new Cat("Cat Toomey", "orange",           10,  10, 10));
-        myShelter.addPetToShelter(new Cat("Cat Rogue", "Gray, orange, white", 10, 10, 10));
+//        myShelter.addPetToShelter(new Cat("Cat Toomey", "orange",           10,  10, 10));
+//        myShelter.addPetToShelter(new Cat("Cat Rogue", "Gray, orange, white", 10, 10, 10));
 
 
 
@@ -91,16 +91,16 @@ public class VirtualPetApplication {
             }
 
             // 6- feed all pets
-            if (userSelection == 6) {
-                System.out.println("Option 6 picked");
-                myShelter.feedAllPets();
-                //System.out.println(myCat.healthStatus());
-            }
-            // 7 - water all pets
-            if (userSelection == 7) {
-                System.out.println("Option 7 picked");
-                myShelter.waterAllPets();
-            }
+//            if (userSelection == 6) {
+//                System.out.println("Option 6 picked");
+//                myShelter.feedAllPets();
+//                //System.out.println(myCat.healthStatus());
+//            }
+//            // 7 - water all pets
+//            if (userSelection == 7) {
+//                System.out.println("Option 7 picked");
+//                myShelter.waterAllPets();
+//            }
             // 8 - play with all pets
             if (userSelection == 8) {
                 System.out.println("Option 8 picked");
@@ -116,7 +116,7 @@ public class VirtualPetApplication {
             // walk all panthers A
 
             if (userSelection == 10) {
-                System.out.println("You picked option A to walk the Panthers");
+                System.out.println("You picked option A to walk pets");
                 myShelter.walkAllPets();
                     //userSelection = scan.nextLine().toUpperCase().charAt(0);
             }
@@ -130,15 +130,18 @@ public class VirtualPetApplication {
 
             if (userSelection == 12){
                 System.out.println("You picked option C to oil the robotic Pets");
-                myShelter.oilAllPets();
+                myShelter.oilRoboticCat();
             }
             // charge battery
 
             if (userSelection == 13){
                 System.out.println("You picked option C to oil the robotic Pets");
-                myShelter.chargeAllPets();
+                myShelter.chargeRoboticCat(scan);
             }
-
+            if (userSelection == 14) {
+//                System.out.println("You picked option C to oil the robotic Pets");
+                myShelter.walkPet(scan);
+            }
             if (userSelection != 9 && userSelection != 0){
                 myShelter.tickPets();
             }

@@ -30,7 +30,10 @@ public class VirtualPetShelter {
         int catNumber = scan.nextInt();
         // subtract 1 from catIndex.  find that cat.  water that cat
         Cat luckyCat = petShelter.get(catNumber - 1);
-        luckyCat.water();
+        if(luckyCat instanceof OrganicCat){
+            ((OrganicCat)luckyCat).water();
+        }
+
         luckyCat.healthStatus();
     }
 
@@ -41,35 +44,50 @@ public class VirtualPetShelter {
         int catNumber = scan.nextInt();
         // subtract 1 from catIndex.  find that cat.  feed that cat
         Cat luckyCat = petShelter.get(catNumber - 1);
-        luckyCat.feed();
+        if(luckyCat instanceof OrganicCat){
+            ((OrganicCat)luckyCat).feed();
+        }
         luckyCat.healthStatus();
     }
 
-    public void playPet(int catIndex){
-        // subtract 1 from catIndex.  find that cat.  water that cat
-        Cat luckyCat = petShelter.get(catIndex - 1);
-        luckyCat.play();
+
+    public void oilRoboticCat(){
+        listPets();
+        System.out.println("You have chosen to oil a pet.  Which one?");
+        Scanner scan = new Scanner(System.in);
+        int catNumber = scan.nextInt();
+        // subtract 1 from catIndex.  find that cat.  feed that cat
+        Cat luckyCat = petShelter.get(catNumber - 1);
+            if(luckyCat instanceof RoboticCat) {
+                ((RoboticCat) luckyCat).oilRoboticCat();
+            }
         luckyCat.healthStatus();
-    }
+
+        }
 
 
     //loop through all pets
     //call each pets feed,water, and play method
-    public void waterAllPets() {
+//    public void waterAllPets() {
+//        for (Cat currentCat : petShelter) {
+//            currentCat.water();
+//        }
+//    }
+//
+//    public void feedAllPets() {
+//        for (Cat currentCat : petShelter) {
+//            currentCat.feed();
+//        }
+//    }
+    public void playAllPets(){
         for (Cat currentCat : petShelter) {
-            currentCat.water();
+            currentCat.walk();
         }
     }
 
-    public void feedAllPets() {
+    public void walkAllPets() {
         for (Cat currentCat : petShelter) {
-            currentCat.feed();
-        }
-    }
-
-    public void playAllPets() {
-        for (Cat currentCat : petShelter) {
-            currentCat.play();
+            currentCat.walk();
         }
     }
     public void cleanAllPets() {
@@ -79,30 +97,31 @@ public class VirtualPetShelter {
             }
         }
     }
-    //oil all
-    public void oilAllPets(){
-        for (Cat currentCat : petShelter) {
-            if (currentCat instanceof RoboticCat){
-                ((RoboticCat)currentCat).oilCat();
-            }
-        }
-    }
-    public void chargeAllPets(){
-        for (Cat currentCat : petShelter) {
-            if (currentCat instanceof RoboticCat){
-                ((RoboticCat)currentCat).chargeCatBattery();
-            }
-        }
-    }
+
+
+//    public void oilLevel(){
+//        for (Cat currentCat : petShelter) {
+//            if (currentCat instanceof RoboticCat){
+//                ((RoboticCat)currentCat).oilCat();
+//            }
+//        }
+//    }
+//    public void chargeRoboticCat(){
+//        for (Cat currentCat : petShelter) {
+//            if (currentCat instanceof RoboticCat){
+//                ((RoboticCat)currentCat).chargeRoboticCat();
+//            }
+//        }
+//    }
 
     //walk all
-    public void walkAllPets(){
-        for (Cat currentCat : petShelter) {
-            if (currentCat instanceof RoboticCat){
-                ((RoboticCat)currentCat).walk();
-            }
-        }
-    }
+//    public void walkAllPets(){
+//        for (Cat currentCat : petShelter) {
+//            if (currentCat instanceof RoboticCat){
+//                ((RoboticCat)currentCat).walk();
+//            }
+//        }
+//    }
 
     public ArrayList<Cat> getPetShelter() {
         return petShelter;
@@ -157,6 +176,7 @@ public class VirtualPetShelter {
                 "\n11- Clean the organic panther and liger cages"+
                 "\n12- Oil robotic panther and robotic ligers"+
                 "\n13- Charge robotic panther and ligers batteries"+
+                "\n14- Walk a single pet"+
                 "\n0- To see the menu at any time");
         System.out.println("------------------------------------------------------------------");
     }
@@ -175,6 +195,42 @@ public class VirtualPetShelter {
             }
         }
         petShelter.remove(foundCat);
+    }
+    public void walkPet(Scanner scan) {
+        // TO DO - figure out how to select a specific pet and then, once selected, REMOVE it from the list
+        System.out.println("Which cat would you like to walk?");
+        for (Cat myShelter : petShelter) {
+            System.out.println(myShelter.getName());
+        }
+        String petName = scan.nextLine();
+        Cat foundCat= null;
+        for (Cat myCat : petShelter){
+            if (myCat.getName().equals(petName)){
+                foundCat = myCat;
+            }
+        }
+        foundCat.walk();
+    }
+    public void chargeRoboticCat(Scanner scan) {
+        // TO DO - figure out how to select a specific pet and then, once selected, REMOVE it from the list
+        System.out.println("Which cat would you like to charge?");
+        for (Cat myCat : petShelter) {
+            if(myCat instanceof RoboticCat){
+                System.out.println(myCat.getName());
+            }
+
+        }
+        String petName = scan.nextLine();
+        Cat foundCat= null;
+        for (Cat myCat : petShelter){
+            if (myCat.getName().equals(petName)){
+                foundCat = myCat;
+            }
+        }
+        if(foundCat instanceof RoboticCat){
+            ((RoboticCat)foundCat).chargeRoboticCat();
+        }
+
     }
     public void addPetToShelter(Cat myCat) {
 //        System.out.println("Tell us about your cat you would like to admit.");
@@ -195,8 +251,26 @@ public class VirtualPetShelter {
         String newColor = scan.nextLine();
         System.out.println("What is your pets name?");
         String newName = scan.nextLine();
-        Cat myCat = new Cat(newName, newColor);
-        petShelter.add(myCat);
+        System.out.println("Enter number for: \n1. Organic-Liger\n2. Organic-Panther\n3.Robotic-Liger\n4.Robotic-panther");
+        int choice = scan.nextInt();
+        scan.nextLine();
+        Cat myCat = null;
+        if (choice == 1){
+             myCat = new OrganicLiger(newName,newColor,10);
+        }
+        else if (choice == 2){
+            myCat = new OrganicPanther(newName,newColor,10);
+        }
+        else if (choice == 3){
+             myCat = new RoboticLiger(newName,newColor,10);
+        }
+        else if (choice == 4){
+             myCat = new RoboticPanther(newName,newColor,10);
+        }
+        if(myCat != null){
+            petShelter.add(myCat);
+        }
+
         System.out.println("Your lovely pet has been added to the shelter."+
                 "\n You can see your pet in the Pet Stats list.");
     }
@@ -204,22 +278,6 @@ public class VirtualPetShelter {
     public void petShelter(Cat myCat){
 
     }
-
-//    public Pet addNewPet(Scanner scan) {
-//        System.out.println("What is your pets name?");
-//        String newName = scan.nextLine();
-//
-//
-//
-//
-//        Pet newPet = new Pet(newName,newColor);
-//        VirtualPetShelter.add(newPet);
-//
-//        return newPet;
-//    }
-//
-//    private static <Pet> void add(Pet newPet) {
-    //}
 
 
 }

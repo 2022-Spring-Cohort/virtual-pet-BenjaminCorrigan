@@ -13,4 +13,9 @@ public class OrganicLiger extends OrganicCat{
         System.out.println("clean the Ligers litterbox");
         cleanliness += 20;
     }
+    @Override
+    public void walk() {
+        System.out.println("Your panther needs to go for a walk");
+        int exercise = 20;
+    }
 }

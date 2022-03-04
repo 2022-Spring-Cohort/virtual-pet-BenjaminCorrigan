@@ -11,15 +11,17 @@ public class RoboticLiger extends RoboticCat {
     }
 
     @Override
-    public void oilCat(){
+    public void oilRoboticCat(){
         System.out.println("Come and get your oil Napoleon");
         int maintenance = 20;
     }
-    @Override
-    public void chargeCatBattery(){
-        System.out.println("Duh, I know my battery is getting low");
-        int maintenance = 20;
-    }
+
+//    public void chargeRoboticCat(){
+//        System.out.println("Duh, I know my battery is getting low");
+//        int maintenance = 20;
+//    }
+
+
 
 
 }
